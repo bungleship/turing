@@ -16,6 +16,10 @@ mutable struct Posterior
         # Condition on data
         data ~ Binomial(100, p)
     end
+    function graph(chain)
+        # all values, parameter p, first chain
+        density(chain[:, :p, 1])
+    end
     function Posterior(data, priors=Beta(1,1))
         # fitting the model
         model = observe(data, priors)
@@ -26,8 +30,8 @@ mutable struct Posterior
 
         # graphing
         function plot()
-            # all values, parameter p, first chain
-            density(post.chains[:, :p, 1])
+            # loop over parameters or chains here
+            graph(chains)
         end
         new(model, chains, plot)
     end
