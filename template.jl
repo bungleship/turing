@@ -1,6 +1,6 @@
 # Template
 # Author: bungleship
-# Info: stuff
+# Description: stuff
 
 using Turing, CairoMakie
 
