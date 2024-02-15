@@ -5,8 +5,8 @@
 using Turing, CairoMakie
 
 mutable struct Posterior
-    model
-    chains
+    model::DynamicPPL.Model
+    chains::Chains
     plot
     @model function observe(data, priors)
 
@@ -29,7 +29,7 @@ mutable struct Posterior
         model = observe(data, priors)
 
         # sampling
-        num_chains = 1
+        num_chains::Int64 = 1
         chains = sample(model, MH(), MCMCThreads(), 40000, num_chains)
 
         # graphing
