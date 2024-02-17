@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<labwc_config>
+
+  <core>
+    <gap>10</gap>
+  </core>
+
+  <theme>
+    <name></name>
+    <cornerRadius>8</cornerRadius>
+    <font name="sans" size="15" />
+  </theme>
+  <desktops>
+    <popupTime>0</popupTime>
+    <names>
+      <name>shell</name>
+      <name>main</name>
+    </names>
+  </desktops>
+  <windowRules>
+    <windowRule identifier="*">
+      <action name="SendToDesktop" to="main" follow="no" />
+      <action name="ToggleMaximize" />
+      <action name="ToggleDecorations" />
+    </windowRule>
+    <windowRule identifier="foot">
+      <action name="SendToDesktop" to="shell" />
+    </windowRule>
+  </windowRules>
+  <keyboard>
+    <default />
+    <keybind key="C-A-Return">
+      <action name="Execute" command="foot sh -c 'tmux'" />
+      <action name="SendToDesktop" to="shell" />
+    </keybind>
+    <keybind key="C-A-p">
+      <action name="Execute" command="loginctl poweroff" />
+    </keybind>
+    <keybind key="A-1">
+      <action name="SendToDesktop" to="shell" follow="no" />
+    </keybind>
+    <keybind key="A-2">
+      <action name="SendToDesktop" to="main" follow="no" />
+    </keybind>
+    <keybind key="A-a">
+      <action name="NextWindow" />
+    </keybind>
+    <keybind key="A-S-a">
+      <action name="PreviousWindow" />
+    </keybind>
+    <keybind key="A-Tab">
+       <action name="GoToDesktop" to="right" />
+    </keybind>
+    <keybind key="A-q">
+       <action name="Reconfigure" />
+    </keybind>
+    <keybind key="A-S-Q">
+      <action name="Exit" />
+    </keybind>
+
+    <!--
+      Remove a previously defined keybind
+      A shorter alternative is <keybind key="W-F4" />
+    -->
+    <keybind key="W-F4">
+      <action name="None" />
+    </keybind>
+  </keyboard>
+
+  <mouse>
+    <!-- start with default settings, then make revisions below -->
+    <default />
+    <!-- Show a custom menu on desktop right click -->
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>
+    </context>
+  </mouse>
+<libinput>
+  <device category="default">
+    <leftHanded>yes</leftHanded>
+  </device>
+</libinput>
+</labwc_config>
